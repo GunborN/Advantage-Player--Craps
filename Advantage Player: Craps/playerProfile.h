@@ -10,4 +10,9 @@
 
 @interface playerProfile : NSObject
 
+NSString *Name;
+NSNumber *profileNumber;
+NSMutableArray *diceRolled;
+NSNumber *favoredNumber;
+
 @end
