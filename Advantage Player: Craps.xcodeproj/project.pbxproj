@@ -26,6 +26,7 @@
 		B1B31A6D1891A6A100514E79 /* C_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B31A6C1891A6A100514E79 /* C_ViewController.m */; };
 		B1B31A701891A72100514E79 /* D_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B31A6F1891A72100514E79 /* D_ViewController.m */; };
 		B1B31A731891A78C00514E79 /* E_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B31A721891A78C00514E79 /* E_ViewController.m */; };
+		CFDB2C811899A4AB00BC4E00 /* playerProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB2C801899A4AB00BC4E00 /* playerProfile.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,8 @@
 		B1B31A6F1891A72100514E79 /* D_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = D_ViewController.m; sourceTree = "<group>"; };
 		B1B31A711891A78C00514E79 /* E_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = E_ViewController.h; sourceTree = "<group>"; };
 		B1B31A721891A78C00514E79 /* E_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = E_ViewController.m; sourceTree = "<group>"; };
+		CFDB2C7F1899A4AB00BC4E00 /* playerProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playerProfile.h; sourceTree = "<group>"; };
+		CFDB2C801899A4AB00BC4E00 /* playerProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = playerProfile.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +133,8 @@
 				B1B31A3C1891A1B500514E79 /* AppDelegate.h */,
 				B1B31A3D1891A1B500514E79 /* AppDelegate.m */,
 				B1B31A3F1891A1B500514E79 /* Main.storyboard */,
+				CFDB2C7F1899A4AB00BC4E00 /* playerProfile.h */,
+				CFDB2C801899A4AB00BC4E00 /* playerProfile.m */,
 				B1B31A451891A1B500514E79 /* Images.xcassets */,
 				B1B31A341891A1B500514E79 /* Supporting Files */,
 				B1B31A621891A2C800514E79 /* MainViewController.h */,
@@ -277,6 +282,7 @@
 				B1B31A731891A78C00514E79 /* E_ViewController.m in Sources */,
 				B1B31A3E1891A1B500514E79 /* AppDelegate.m in Sources */,
 				B1B31A6A1891A60700514E79 /* B2_ViewController.m in Sources */,
+				CFDB2C811899A4AB00BC4E00 /* playerProfile.m in Sources */,
 				B1B31A6D1891A6A100514E79 /* C_ViewController.m in Sources */,
 				B1B31A671891A49500514E79 /* B_ViewController.m in Sources */,
 				B1B31A641891A2C800514E79 /* MainViewController.m in Sources */,
@@ -494,6 +500,7 @@
 				B1B31A5E1891A1B500514E79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B1B31A5F1891A1B500514E79 /* Build configuration list for PBXNativeTarget "Advantage Player: CrapsTests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +509,7 @@
 				B1B31A611891A1B500514E79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
