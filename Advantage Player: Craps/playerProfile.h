@@ -8,11 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface playerProfile : NSObject
+@interface playerProfile : NSObject{
 
-NSString *Name;
-NSNumber *profileNumber;
-NSMutableArray *diceRolled;
-NSNumber *favoredNumber;
+    NSString *Name;
+    NSNumber *profileNumber;
+    NSMutableArray *diceRolled;
+    NSNumber *favoredNumber;
+}
+
 
 @end
+
