@@ -27,6 +27,56 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    
+    /////////////testing stuff -- DELETE BEFORE FINALIZING//////////////
+    ixlPlayerProfile *newProfile = [[ixlPlayerProfile alloc]init];
+    newProfile.diceRolled = [[NSMutableArray alloc]init];
+    NSInteger two,three,four,five,six,seven,eight,nine,ten,eleven,twelve;
+    two = 2,three = 3,four = 4,five = 5,six = 6,seven = 7,eight = 8,nine = 9,ten = 10,eleven = 11,twelve = 12;
+    newProfile.Name = @"Adam";
+    newProfile.profileNumber = [NSNumber numberWithInt: 1];
+    NSLog(@"Starting favored num = %@",newProfile.printFavoredNumber);
+    
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:two]];
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:two]];
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:two]];
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:three]];
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:three]];
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:three]];
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:three]];
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:three]];
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:four]];
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:five]];
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:six]];
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:seven]];
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:eight]];
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:nine]];
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:ten]];
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:eleven]];
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:twelve]];
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:twelve]];
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:twelve]];
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:twelve]];
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:twelve]];
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:twelve]];
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:twelve]];
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:twelve]];
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:twelve]];
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:twelve]];
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:twelve]];
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:twelve]];
+    
+    NSLog(@"profile name = %@",newProfile.Name);
+    NSLog(@"profile number = %@",newProfile.profileNumber);
+    
+    [newProfile setFavoredNumber];
+    
+    NSLog(@"Ending favored num = %@",newProfile.printFavoredNumber);
+    ////////////////////////////////////////////////////////////////////
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
