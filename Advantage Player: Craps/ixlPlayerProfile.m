@@ -11,6 +11,7 @@
 @implementation ixlPlayerProfile
 @synthesize Name,profileNumber,diceRolled;
 
+
 -(void) setFavoredNumber
 {
 	NSNumber *leadRoll;
