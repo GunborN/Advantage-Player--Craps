@@ -24,7 +24,7 @@
         current = [NSNumber numberWithInteger:i];
         
 		// this block should give me an array with just the “current” roll number objects in it
-		NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"SELF == %@",current];/*[NSString stringWithFormat:@"SELF == %@", current]];*/
+		NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"SELF == %@",current];
   		diceRolledCopy = [diceRolled filteredArrayUsingPredicate:thePredicate];
         
 		// this block should take the size of the new array of “current” objects and give us back
@@ -43,6 +43,7 @@
 -(NSNumber *) printFavoredNumber
 {
 	//print out the variable “favoredNumber” to wherever.
+    //at the moment (for testing purposes) all this does is return the favoredNumber when method is called.
     return favoredNumber;
 }
 
