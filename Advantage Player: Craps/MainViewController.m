@@ -7,12 +7,12 @@
 //
 
 #import "MainViewController.h"
-
-@interface MainViewController ()
-
-@end
+#import "AppDelegate.h"
 
 @implementation MainViewController
+
+
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -70,7 +70,7 @@
     NSLog(@"profile name = %@",newProfile.Name);
     NSLog(@"profile number = %@",newProfile.profileNumber);
     
-    [newProfile setFavoredNumber];
+    
     
     NSLog(@"Ending favored num = %@",newProfile.printFavoredNumber);
     ////////////////////////////////////////////////////////////////////
@@ -79,10 +79,35 @@
     
 }
 
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
 
+}
+- (IBAction)enterNumber {
+    [_textNumber resignFirstResponder];
+    if ([_textNumber.text isEqualToString:@"42"]) {
+        _labelFavNumber.text = @"CORRECT!";
+    } else {
+        _labelFavNumber.text = @"WRONG!";
+    }
+}
+- (IBAction)submitTextNumber:(id)sender {
+    [_textNumber resignFirstResponder];
+    ixlPlayerProfile *newProfile = [[ixlPlayerProfile alloc]init];
+    newProfile.diceRolled = [[NSMutableArray alloc]init];
+    NSInteger textNumberText = [_textNumber.text integerValue];
+    NSInteger two,three,four,five,six,seven,eight,nine,ten,eleven,twelve;
+    two = 2,three = 3,four = 4,five = 5,six = 6,seven = 7,eight = 8,nine = 9,ten = 10,eleven = 11,twelve = 12;
+    newProfile.Name = @"Adam";
+    newProfile.profileNumber = [NSNumber numberWithInt: 1];
+    
+    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:textNumberText]];
+     [newProfile setFavoredNumber];
+NSLog(@"Starting favored num = %@",newProfile.printFavoredNumber);
+     NSLog(@"derp number %i",textNumberText);
+     }
 @end
