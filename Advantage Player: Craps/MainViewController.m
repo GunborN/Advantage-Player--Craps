@@ -30,9 +30,10 @@
 	// Do any additional setup after loading the view.
     
     
-    /////////////testing stuff -- DELETE BEFORE FINALIZING//////////////
+    /////////////testing stuff -- DELETE EXTRAS BEFORE FINALIZING//////////////
     newProfile = [[ixlPlayerProfile alloc]init];// Keep this
     newProfile.diceRolled = [[NSMutableArray alloc]init];// Keep this
+    newProfile.rollAverageDictionary = [NSMutableDictionary dictionary];// Keep this
     
     //rest can be deleted or commented
     NSInteger two,three,four,five,six,seven,eight,nine,ten,eleven,twelve;
@@ -89,8 +90,21 @@
     [newProfile setFavoredNumber];
     
     //sets labels
-    _labelFavNumber.text = favNumber;
     _currentArray.text = stringArray;
+    _labelFavNumber.text = favNumber;
+    
+    //for now, this just outputs to the console percentages of the rolls contained in the arrray.
+    NSLog(@"   Two:  %%%@", [newProfile.rollAverageDictionary objectForKey:@"2"]);
+    NSLog(@" Three:  %%%@", [newProfile.rollAverageDictionary objectForKey:@"3"]);
+    NSLog(@"  Four:  %%%@", [newProfile.rollAverageDictionary objectForKey:@"4"]);
+    NSLog(@"  Five:  %%%@", [newProfile.rollAverageDictionary objectForKey:@"5"]);
+    NSLog(@"   Six:  %%%@", [newProfile.rollAverageDictionary objectForKey:@"6"]);
+    NSLog(@" Seven:  %%%@", [newProfile.rollAverageDictionary objectForKey:@"7"]);
+    NSLog(@" Eight:  %%%@", [newProfile.rollAverageDictionary objectForKey:@"8"]);
+    NSLog(@"  Nine:  %%%@", [newProfile.rollAverageDictionary objectForKey:@"9"]);
+    NSLog(@"   Ten:  %%%@", [newProfile.rollAverageDictionary objectForKey:@"10"]);
+    NSLog(@"Eleven:  %%%@", [newProfile.rollAverageDictionary objectForKey:@"11"]);
+    NSLog(@"Twelve:  %%%@\n\n",[newProfile.rollAverageDictionary objectForKey:@"12"]);
 }
 
 //clears the text field when editing of text field begins

@@ -14,12 +14,14 @@
     NSString *Name;
     NSNumber *profileNumber,*favoredNumber;
     NSMutableArray *diceRolled;
+    NSMutableDictionary *rollAverageDictionary;
 }
 @property NSString *Name;
 @property NSNumber *profileNumber;
 @property (nonatomic,retain) NSMutableArray *diceRolled;
+@property (nonatomic,retain) NSMutableDictionary *rollAverageDictionary;
 
 -(void)setFavoredNumber;
--(NSNumber *)printFavoredNumber;
+-(NSNumber *)printFavoredNumber;\
 
 @end

@@ -10,12 +10,15 @@
 
 
 @implementation ixlPlayerProfile
-@synthesize Name,profileNumber,diceRolled;
-
+@synthesize Name,profileNumber,diceRolled,rollAverageDictionary;
 
 -(void) setFavoredNumber
 {
-	NSNumber *leadRoll;
+    int totalTwos = 0, totalThrees = 0, totalFours = 0, totalFives = 0, totalSixes = 0, totalSevens = 0,
+        totalEights = 0, totalNines = 0, totalTens = 0,totalElevens = 0, totalTwelves = 0;
+    float totalNum = 0;
+    
+    NSNumber *leadRoll;
 	int leadRollAmount = 0, count = 0;
 	NSArray *diceRolledCopy = [[NSMutableArray alloc]initWithCapacity:[diceRolled count]];
     diceRolledCopy = diceRolled;
@@ -37,8 +40,82 @@
 		{
 			leadRoll = current;
 			leadRollAmount = count;
+            favoredNumber = leadRoll;
 		}
+        
+        //swith statement that takes values 2-12 (for now) in order to calculate the percentages each number has currently been rolled.
+        switch (i) {
+            case 2:
+                totalTwos = count;
+                totalNum += count;
+                break;
+            case 3:
+                totalThrees = count;
+                totalNum += count;
+                break;
+            case 4:
+                totalFours = count;
+                totalNum += count;
+                break;
+            case 5:
+                totalFives = count;
+                totalNum += count;
+                break;
+            case 6:
+                totalSixes = count;
+                totalNum += count;
+                break;
+            case 7:
+                totalSevens = count;
+                totalNum += count;
+                break;
+            case 8:
+                totalEights = count;
+                totalNum += count;
+                break;
+            case 9:
+                totalNines = count;
+                totalNum += count;
+                break;
+            case 10:
+                totalTens = count;
+                totalNum += count;
+                break;
+            case 11:
+                totalElevens = count;
+                totalNum += count;
+                break;
+            case 12:
+                totalTwelves = count;
+                totalNum += count;
+                break;
+            default:
+                break;
+        }
 	}
+
+    // This big block sets objects in a dictionary I can gain access to by using reference keys
+    [rollAverageDictionary setObject:@((totalTwos/totalNum)*100) forKey :@"2"];
+    [rollAverageDictionary setObject:@((totalThrees/totalNum)*100) forKey :@"3"];
+    [rollAverageDictionary setObject:@((totalFours/totalNum)*100) forKey :@"4"];
+    //[rollAverageDictionary setObject:@0.0f forKey :@"HW 4"];
+    //[rollAverageDictionary setObject:@0.0f forKey :@"EW 4"];
+    [rollAverageDictionary setObject:@((totalFives/totalNum)*100) forKey :@"5"];
+    [rollAverageDictionary setObject:@((totalSixes/totalNum)*100) forKey :@"6"];
+    //[rollAverageDictionary setObject:@0.0f forKey :@"HW 6"];
+    //[rollAverageDictionary setObject:@0.0f forKey :@"EW 6"];
+    [rollAverageDictionary setObject:@((totalSevens/totalNum)*100)forKey :@"7"];
+    [rollAverageDictionary setObject:@((totalEights/totalNum)*100) forKey :@"8"];
+    //[rollAverageDictionary setObject:@0.0f forKey :@"HW 8"];
+    //[rollAverageDictionary setObject:@0.0f forKey :@"EW 8"];
+    [rollAverageDictionary setObject:@((totalNines/totalNum)*100) forKey :@"9"];
+    [rollAverageDictionary setObject:@((totalTens/totalNum)*100) forKey :@"10"];
+    //[rollAverageDictionary setObject:@0.0f forKey :@"HW 10"];
+    //[rollAverageDictionary setObject:@0.0f forKey :@"EW 10"];
+    [rollAverageDictionary setObject:@((totalElevens/totalNum)*100) forKey :@"11"];
+    [rollAverageDictionary setObject:@((totalTwelves/totalNum)*100) forKey :@"12"];
+    
+    //this will set the favoredNumber to the most commonly picked number
 	favoredNumber = leadRoll;
 }
 
