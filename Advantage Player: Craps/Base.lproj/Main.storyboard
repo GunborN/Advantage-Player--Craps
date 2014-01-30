@@ -21,7 +21,12 @@
                                 <rect key="frame" x="99" y="25" width="122" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <action selector="clearTextField:" destination="aqd-pj-6Xk" eventType="editingDidBegin" id="lUE-80-OE7"/>
+                                    <action selector="closeKeyboard:" destination="aqd-pj-6Xk" eventType="touchUpOutside" id="H1j-dH-zAJ"/>
+                                    <action selector="closeKeyboard:" destination="aqd-pj-6Xk" eventType="touchCancel" id="eo2-q3-Zem"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Saz-j0-e6g">
                                 <rect key="frame" x="99" y="63" width="122" height="30"/>
@@ -74,6 +79,8 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="buttonSubmit" destination="Saz-j0-e6g" id="g5U-Hr-ZgP"/>
+                        <outlet property="currentArray" destination="8M7-Bn-IKT" id="GQT-Aq-SlZ"/>
+                        <outlet property="labelFavNumber" destination="kGw-0f-MFy" id="iR2-lR-Dnx"/>
                         <outlet property="textNumber" destination="pIC-WA-hez" id="4Sp-8I-d5E"/>
                     </connections>
                 </viewController>

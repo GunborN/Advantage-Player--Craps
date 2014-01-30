@@ -18,5 +18,6 @@
 @property (nonatomic, retain) IBOutlet UILabel *labelFavNumber;
 @property (nonatomic, retain) IBOutlet UITextField *textNumber;
 @property (nonatomic, retain) IBOutlet UIButton *buttonSubmit;
+@property (nonatomic, retain) IBOutlet UILabel *currentArray;
 
 @end

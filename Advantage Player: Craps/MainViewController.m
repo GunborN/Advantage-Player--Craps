@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "AppDelegate.h"
+#import <Foundation/NSArray.h>
 
 @implementation MainViewController
 
@@ -30,42 +31,17 @@
     
     
     /////////////testing stuff -- DELETE BEFORE FINALIZING//////////////
-    newProfile = [[ixlPlayerProfile alloc]init];
-    newProfile.diceRolled = [[NSMutableArray alloc]init];
+    newProfile = [[ixlPlayerProfile alloc]init];// Keep this
+    newProfile.diceRolled = [[NSMutableArray alloc]init];// Keep this
+    
+    //rest can be deleted or commented
     NSInteger two,three,four,five,six,seven,eight,nine,ten,eleven,twelve;
     two = 2,three = 3,four = 4,five = 5,six = 6,seven = 7,eight = 8,nine = 9,ten = 10,eleven = 11,twelve = 12;
     newProfile.Name = @"Adam";
     newProfile.profileNumber = [NSNumber numberWithInt: 1];
     NSLog(@"Starting favored num = %@",newProfile.printFavoredNumber);
     
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:two]];
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:two]];
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:two]];
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:three]];
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:three]];
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:three]];
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:three]];
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:three]];
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:four]];
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:five]];
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:six]];
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:seven]];
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:eight]];
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:nine]];
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:ten]];
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:eleven]];
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:twelve]];
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:twelve]];
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:twelve]];
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:twelve]];
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:twelve]];
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:twelve]];
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:twelve]];
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:twelve]];
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:twelve]];
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:twelve]];
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:twelve]];
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:twelve]];
+
     
     NSLog(@"profile name = %@",newProfile.Name);
     NSLog(@"profile number = %@",newProfile.profileNumber);
@@ -89,11 +65,43 @@
 }
 
 - (IBAction)submitTextNumber:(id)sender {
-    [_textNumber resignFirstResponder];
+    
+    //converts favoredNumber in to string
+    NSString *favNumber = [newProfile.printFavoredNumber stringValue];
+    //converts input text to NSNumber
     NSInteger textNumberText = [_textNumber.text integerValue];
+    
+    //adds an object from input text to the array newProfile
+    if (textNumberText >= 2 && textNumberText <= 12){
     [newProfile.diceRolled addObject:[NSNumber numberWithInteger:textNumberText]];
+    }
+    else{
+    _textNumber.text = @"";
+        NSLog(@"Invalid number!!");
+        return;
+    }
+    //converts NSMutable Array in to NSString seperated by ","
+    NSString *stringArray = [newProfile.diceRolled componentsJoinedByString:@","];
+
+    //closes keyboard dialog
+    [_textNumber resignFirstResponder];
+    
     [newProfile setFavoredNumber];
-    NSLog(@"Starting favored num = %@",newProfile.printFavoredNumber);
-    NSLog(@"Input Number Is %i",textNumberText);
+    
+    //sets labels
+    _labelFavNumber.text = favNumber;
+    _currentArray.text = stringArray;
 }
+
+//clears the text field when editing of text field begins
+- (IBAction)clearTextField:(UITextField *)sender {
+    _textNumber.text = @"";
+}
+
+//closes keyboard when editing is done or when textfield loses focus
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}
+
 @end

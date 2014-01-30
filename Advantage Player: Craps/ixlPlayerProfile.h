@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface ixlPlayerProfile : NSObject
 {
     NSString *Name;
