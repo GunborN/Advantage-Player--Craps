@@ -10,9 +10,10 @@
 #import "AppDelegate.h"
 #import <Foundation/NSArray.h>
 
+NSNumber *favoredNum;
+
 @implementation MainViewController
-
-
+@synthesize playerProfileArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,20 +41,26 @@
     two = 2,three = 3,four = 4,five = 5,six = 6,seven = 7,eight = 8,nine = 9,ten = 10,eleven = 11,twelve = 12;
     newProfile.Name = @"Adam";
     newProfile.profileNumber = [NSNumber numberWithInt: 1];
+    /*
     NSLog(@"Starting favored num = %@",newProfile.printFavoredNumber);
-    
-
-    
     NSLog(@"profile name = %@",newProfile.Name);
     NSLog(@"profile number = %@",newProfile.profileNumber);
-    
-    
-    
     NSLog(@"Ending favored num = %@",newProfile.printFavoredNumber);
+    */
     ////////////////////////////////////////////////////////////////////
     
     
+    /////////////LOG and EDIT button functionality//////////////////////
+    //Create array from Plist document of all player profiles
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *plistPath = [documentsDirectory stringByAppendingPathComponent:@"playerProfile.plist"];
     
+    //This will store all of the player profiles into the "playerProfileArray" as
+    //dictionaries
+    playerProfileArray = [[[NSMutableArray alloc]initWithContentsOfFile:plistPath]mutableCopy];
+    NSLog(@"%@", playerProfileArray);
+    ////////////////////////////////////////////////////////////////////
 }
 
 
@@ -89,6 +96,8 @@
     
     [newProfile setFavoredNumber];
     
+    favoredNum = newProfile.printFavoredNumber;
+    
     //sets labels
     _currentArray.text = stringArray;
     _labelFavNumber.text = favNumber;
@@ -117,5 +126,52 @@
 {
     [self.view endEditing:YES];
 }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////More Persist Method////////////////////////////////////
+- (IBAction)logDictionary:(id)sender {
+    [self refreshArray]; //needed for below method
+}
+
+-(void)refreshArray
+{
+    //creates an array from Plist document of all player profiles
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory =  [paths objectAtIndex:0];
+    NSString *plistPath = [documentsDirectory stringByAppendingPathComponent:@"playerProfile.plist"];
+    playerProfileArray = [[[NSMutableArray alloc] initWithContentsOfFile:plistPath]mutableCopy];
+    NSLog(@"%@", [playerProfileArray objectAtIndex:0]);
+}
+
+- (IBAction)editDictionary:(id)sender {
+    [self updatePlist]; //needed for below method
+}
+
+//method to retrieve mountain object and update Plist
+-(void)updatePlist
+{
+    NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+    for (NSDictionary *object in playerProfileArray)
+    {
+        if ([[object objectForKey:@"Profile"] isEqualToString:@"0"])
+        {
+            [tempArray insertObject:object atIndex:0];
+        }
+    }
+    NSMutableDictionary *dict = [tempArray objectAtIndex:0];
+    
+    //edit below this line then use LOG and EDIT buttons///////
+    [dict setObject:favoredNum forKey:@"Favored Number"];
+    //don't edit past here for testing purposes////////////////
+    
+    [playerProfileArray replaceObjectAtIndex:0 withObject:dict];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory =  [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"playerProfile.plist"];
+    [playerProfileArray writeToFile:path atomically:YES];
+}
+///////////////////////////////Persist Methods End////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
 
 @end

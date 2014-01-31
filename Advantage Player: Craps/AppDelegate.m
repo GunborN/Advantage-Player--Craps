@@ -14,8 +14,38 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [self copyPlist]; // this is for the persist method testing, keep for now
     return YES;
 }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////Persist Method Start//////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+-(void)copyPlist
+{
+    NSError *error;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"playerProfile.plist"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    //check if the file exists already in users documents folder
+    //if file does not exist copy it from the application bundle Plist file
+    if (![fileManager fileExistsAtPath:path])
+    {
+        NSLog(@"copying database to users documents");
+        NSString *pathToSettingsInBundle = [[NSBundle mainBundle] pathForResource:@"playerProfile" ofType:@"plist"];
+        [fileManager copyItemAtPath:pathToSettingsInBundle toPath:path error:&error];
+    }
+    //if file is already there do nothing
+    else {
+        NSLog(@"users database already configured");
+    }
+}
+//////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////Persistance Method End////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

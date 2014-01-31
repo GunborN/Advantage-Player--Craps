@@ -27,6 +27,7 @@
 		B1B31A701891A72100514E79 /* D_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B31A6F1891A72100514E79 /* D_ViewController.m */; };
 		B1B31A731891A78C00514E79 /* E_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B31A721891A78C00514E79 /* E_ViewController.m */; };
 		B1B31AA81899C3C500514E79 /* ixlPlayerProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B31AA71899C3C500514E79 /* ixlPlayerProfile.m */; };
+		B1B31AAE189B4C3E00514E79 /* playerProfile.plist in Resources */ = {isa = PBXBuildFile; fileRef = B1B31AAD189B4C3E00514E79 /* playerProfile.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		B1B31A721891A78C00514E79 /* E_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = E_ViewController.m; sourceTree = "<group>"; };
 		B1B31AA61899C3C500514E79 /* ixlPlayerProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ixlPlayerProfile.h; sourceTree = "<group>"; };
 		B1B31AA71899C3C500514E79 /* ixlPlayerProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ixlPlayerProfile.m; sourceTree = "<group>"; };
+		B1B31AAD189B4C3E00514E79 /* playerProfile.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = playerProfile.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 		B1B31A331891A1B500514E79 /* Advantage Player: Craps */ = {
 			isa = PBXGroup;
 			children = (
+				B1B31AAD189B4C3E00514E79 /* playerProfile.plist */,
 				B1B31A3C1891A1B500514E79 /* AppDelegate.h */,
 				B1B31A3D1891A1B500514E79 /* AppDelegate.m */,
 				B1B31A3F1891A1B500514E79 /* Main.storyboard */,
@@ -261,6 +264,7 @@
 				B1B31A461891A1B500514E79 /* Images.xcassets in Resources */,
 				B1B31A381891A1B500514E79 /* InfoPlist.strings in Resources */,
 				B1B31A411891A1B500514E79 /* Main.storyboard in Resources */,
+				B1B31AAE189B4C3E00514E79 /* playerProfile.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
