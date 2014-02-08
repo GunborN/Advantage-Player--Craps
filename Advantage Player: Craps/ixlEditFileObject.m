@@ -9,14 +9,16 @@
 #import "ixlEditFileObject.h"
 
 @implementation ixlEditFileObject
-@synthesize profiles,playerProfileArray;//,returnProfile;
+@synthesize profiles,playerProfileArray,paths,documentsDirectory,plistPath,baseProfile;
 
 -(id) init
 {
     if(self = [super init])
     {
-        //self.returnProfile = [[ixlPlayerProfile alloc]init];
-        //self.profiles = [[[NSMutableDictionary alloc]init]mutableCopy];
+        self->baseProfile = [[ixlPlayerProfile alloc]init];
+        paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        documentsDirectory =  [paths objectAtIndex:0];
+        plistPath = [documentsDirectory stringByAppendingPathComponent:@"playerProfile.plist"];
     }
     return self;
 }
@@ -24,9 +26,6 @@
 -(void) changeFileObject:(ixlPlayerProfile *)playerProfileObject
 {
     //This will set the playerProfileArray to have the updated contents of the plist file
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory =  [paths objectAtIndex:0];
-    NSString *plistPath = [documentsDirectory stringByAppendingPathComponent:@"playerProfile.plist"];
     playerProfileArray = [[[NSMutableArray alloc] initWithContentsOfFile:plistPath]mutableCopy];
     
     NSMutableArray *tempArray = [[NSMutableArray alloc]initWithArray:playerProfileArray];
@@ -34,8 +33,6 @@
     
     profileNumTracker = [playerProfileArray count];
     
-    
-    NSLog(@"T E S T I N G  1");
     // if the playerProfileArray only consists of 1 element (which is the base element NOT TO BE MESSED WITH, other than
     // to copy it) then this copies the base/blank profile object, puts in new values in that object, sets object in the
     // playerProfileArray, then writes it to the file
@@ -45,7 +42,7 @@
         
         if([profiles objectForKey:@"Item 0"] == [[tempArray objectAtIndex:0] objectForKey:@"Item 0"])
         {
-            NSLog(@"T E S T I N G  3");
+
             NSDictionary *profiles2 = [[[NSDictionary alloc]initWithDictionary:profiles]mutableCopy];
             [tempArray insertObject:profiles2 atIndex:1];
             dict = [tempArray objectAtIndex:1];
@@ -59,58 +56,45 @@
             
             [dict setObject:playerProfileObject->name forKey:@"Name"];
             
-            if(playerProfileObject->favoredNumber != nil)
+            if(playerProfileObject->favoredNumber == nil)
             {
-                [dict setObject:playerProfileObject->favoredNumber forKey:@"Favored Number"];
+                [dict setObject:@0 forKey:@"Favored Number"];
             }
+            else
+                [dict setObject:playerProfileObject->favoredNumber forKey:@"Favored Number"];
             [dict setObject:playerProfileObject->diceRolled forKey:@"Dice Rolled"];
             [dict setObject:playerProfileObject->rollAverageDictionary forKey:@"Roll Average"];
-            NSLog(@"profileNumTracker: %i",profileNumTracker);
-            //[playerProfileArray replaceObjectAtIndex:0 withObject:profiles];
-            [playerProfileArray insertObject:dict atIndex:(profileNumTracker-1)]; //ObjectAtIndex:(profileNumTracker - 1) withObject:dict];
+            [playerProfileArray insertObject:dict atIndex:(profileNumTracker-1)];
             [playerProfileArray writeToFile:plistPath atomically:YES];
-        
-            ////////////This portion can be deleted after testing is done with//////////
-            NSLog(@"Document's Directory1: %@",paths[0]);                            ///
-            NSLog(@"There are: %i profiles currently made.", (profileNumTracker-1)); ///
-            NSLog(@"This is the updated file information after editing the file: "); ///
-            NSLog(@"%@",playerProfileArray[(profileNumTracker-1)]);                  ///
-            ////////////////////////////////////////////////////////////////////////////
         }
 
 	}else{
-        NSLog(@"T E S T I N G  4");
         bool ifProfileExisted = false;
 
         // this will go through each object in the playerProfileArray one at a time.
         for(NSDictionary *currentObject in tempArray)
         {
-
             // if the object in array already exists, simply replace values in the tempArray with updated values and
             // do the same write to file process.
             if([[currentObject objectForKey:@"Profile Number"] isEqualToNumber:playerProfileObject->profileNumber])
             {
-                NSLog(@"T E S T I N G  5");
                 dict = [tempArray objectAtIndex: [playerProfileObject->profileNumber intValue]];
                 [dict setObject:playerProfileObject->name forKey:@"Name"];
-                [dict setObject:playerProfileObject->favoredNumber forKey:@"Favored Number"];
+                
+                if(playerProfileObject->favoredNumber == nil)
+                {
+                    [dict setObject:@0 forKey:@"Favored Number"];
+                }else
+                    [dict setObject:playerProfileObject->favoredNumber forKey:@"Favored Number"];
                 [dict setObject:playerProfileObject->diceRolled forKey:@"Dice Rolled"];
                 [dict setObject:playerProfileObject->rollAverageDictionary forKey:@"Roll Average"];
                 [playerProfileArray replaceObjectAtIndex:[playerProfileObject->profileNumber intValue] withObject:dict];
                 [playerProfileArray writeToFile:plistPath atomically:YES];
 
-                ////////////This portion can be deleted after testing is done with///////////
-                NSLog(@"Document's Directory1: %@",paths[0]);                            ////
-                NSLog(@"There are: %i profiles currently made.", (profileNumTracker-1)); ////
-                NSLog(@"This is the updated file information after editing the file: "); ////
-                NSLog(@"%@",playerProfileArray[[playerProfileObject->profileNumber intValue]]);//
-                /////////////////////////////////////////////////////////////////////////////
-
                 ifProfileExisted = true;
                 break;
             }
         }
-        NSLog(@"T E S T I N G  6");
         // if the profile didn't exist already, this will make a new profile and set it into the tempArray then do same
         // process basically.
         if(ifProfileExisted == false)
@@ -121,21 +105,53 @@
             
             [dict setObject:[NSNumber numberWithInt:profileNumTracker++] forKey:@"Profile Number"];
             [dict setObject:playerProfileObject->name forKey:@"Name"];
-            [dict setObject:playerProfileObject->favoredNumber forKey:@"Favored Number"];
+            
+            if(playerProfileObject->favoredNumber != nil)
+            {
+                [dict setObject:@0 forKey:@"Favored Number"];
+            }
+            else
+                [dict setObject:playerProfileObject->favoredNumber forKey:@"Favored Number"];
             [dict setObject:playerProfileObject->diceRolled forKey:@"Dice Rolled"];
             [dict setObject:playerProfileObject->rollAverageDictionary forKey:@"Roll Average"];
             [playerProfileArray insertObject: dict atIndex:(profileNumTracker-1)];
             [playerProfileArray writeToFile:plistPath atomically:YES];
-            
-            ////////////This portion can be deleted after testing is done with//////////
-            NSLog(@"Document's Directory1: %@",paths[0]);                            ///
-            NSLog(@"There are: %i profiles currently made.", (profileNumTracker-1)); ///
-            NSLog(@"This is the updated file information after editing the file: "); ///
-            NSLog(@"%@",playerProfileArray[(profileNumTracker-1)]);                  ///
-            ////////////////////////////////////////////////////////////////////////////
         }
     }
 }
 
+-(NSMutableArray *)obtainProfileList
+{
+    ixlPlayerProfile *currentProfile = [[ixlPlayerProfile alloc]init];
+    profileNumTracker = [playerProfileArray count];
+    NSMutableArray *listOfProfiles = [[NSMutableArray alloc]init];
+    NSDictionary *profiles3 = [[[NSDictionary alloc]initWithDictionary:playerProfileArray[0]]mutableCopy];
+
+    //Setting the base profile to be copied from the base plist file "Item 0"
+    baseProfile->profileNumber = [profiles3 objectForKey:@"Profile Number"];
+    baseProfile->name = [profiles3 objectForKey:@"Name"];
+    baseProfile->favoredNumber = [profiles3 objectForKey:@"Favored Number"];
+    baseProfile->diceRolled = [profiles3 objectForKey:@"Dice Rolled"];
+    baseProfile->rollAverageDictionary = [profiles3 objectForKey:@"Roll Average"];
+
+    currentProfile = baseProfile;
+    
+    //this will go through each object in the plist file and assign them to a new ixlPlayerProfile object, then putting that
+    //object inside of an array in order from Profile Number 1 onwards for however many profiles exist.
+    for(int i = 1;i < profileNumTracker;i++)
+    {
+        ixlPlayerProfile *currentProfile = [[ixlPlayerProfile alloc]init];
+        NSDictionary *profiles3 = [[[NSDictionary alloc]initWithDictionary:playerProfileArray[i]]mutableCopy];
+
+        currentProfile->profileNumber = [profiles3 objectForKey:@"Profile Number"];
+        currentProfile->name = [profiles3 objectForKey:@"Name"];
+        currentProfile->favoredNumber = [profiles3 objectForKey:@"Favored Number"];
+        currentProfile->diceRolled = [profiles3 objectForKey:@"Dice Rolled"];
+        currentProfile->rollAverageDictionary = [profiles3 objectForKey:@"Roll Average"];
+        
+        listOfProfiles[i-1] = currentProfile;
+    }
+    return listOfProfiles;
+}
 
 @end

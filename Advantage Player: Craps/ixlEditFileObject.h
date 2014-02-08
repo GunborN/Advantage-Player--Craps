@@ -11,18 +11,23 @@
 
 @interface ixlEditFileObject : ixlPlayerProfile
 {
-    //ixlPlayerProfile *returnProfile;
+    ixlPlayerProfile *baseProfile;
 	NSDictionary *profiles;
     NSMutableArray *playerProfileArray;
 	int profileNumTracker;
+    
+    NSArray *paths;
+    NSString *documentsDirectory,*plistPath;
 }
 @property (nonatomic,retain)NSDictionary *profiles;
 @property (nonatomic,retain)NSMutableArray *playerProfileArray;
-//@property ixlPlayerProfile *returnProfile;
+@property NSArray *paths;
+@property NSString *documentsDirectory,*plistPath;
+@property ixlPlayerProfile *baseProfile;
 
 -(id)init;
 -(void) changeFileObject:(ixlPlayerProfile *)playerProfileObject;
-//-(ixlPlayerProfile *)new;
-//-(ixlPlayerProfile *)current;
+-(NSMutableArray *)obtainProfileList;
+
 
 @end

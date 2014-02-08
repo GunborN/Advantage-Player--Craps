@@ -29,7 +29,6 @@
     {
         self.name = @"Player";
         self.diceRolled = [[NSMutableArray alloc]init];
-        //self.rollAverageDictionary = [NSMutableDictionary dictionary];
         self.rollAverageDictionary = [[NSMutableDictionary alloc]init];
         //return [self initWithNew:nil];
     }

@@ -51,9 +51,7 @@ NSNumber *favoredNum;
 }
 
 - (IBAction)submitTextNumber:(id)sender {
-    
-    //converts favoredNumber in to string
-    NSString *favNumber = [ixlNewProfile.favoredNumber stringValue];
+
     //converts input text to NSNumber
     NSInteger textNumberText = [_textNumber.text integerValue];
     
@@ -66,6 +64,7 @@ NSNumber *favoredNum;
         NSLog(@"Invalid number!!");
         return;
     }
+    
     //converts NSMutable Array in to NSString seperated by ","
     NSString *stringArray = [ixlNewProfile.diceRolled componentsJoinedByString:@","];
 
@@ -73,8 +72,10 @@ NSNumber *favoredNum;
     [_textNumber resignFirstResponder];
     
     [ixlNewProfile setFavoredNumber];
-    
     favoredNum = ixlNewProfile.favoredNumber;
+    
+    //converts favoredNumber in to string
+    NSString *favNumber = [ixlNewProfile.favoredNumber stringValue];
     
     //sets labels
     _currentArray.text = stringArray;
@@ -121,7 +122,20 @@ NSNumber *favoredNum;
     [ixlNewProfile setFavoredNumber];
     [ixlNewProfile setProfileNumber: @3];
     [ixlEditProfile changeFileObject:ixlNewProfile];
-     
+    
+    //This tests the method "obtainProfileList" from the class "ixlEditFileObject", the method returns an array of ixlPlayerProfile
+    //objects whose information was obtained from the the plist items starting at Item 1 then onwards.
+    NSArray *profileObjectsArray = [ixlEditProfile obtainProfileList];
+    for(int i = 0;i < [profileObjectsArray count];i++)
+    {
+        ixlPlayerProfile *curProfile = profileObjectsArray[i];
+        NSLog(@"Profile Number: %@",curProfile.profileNumber);
+        NSLog(@"Profile Name:   %@",curProfile.name);
+        NSLog(@"Favored Number: %@",curProfile.favoredNumber);
+        NSLog(@"Dice Rolled:    %@",curProfile.diceRolled);
+        NSLog(@"Roll Average:   %@",curProfile.rollAverageDictionary);
+    }
+    
 }
 
 @end
