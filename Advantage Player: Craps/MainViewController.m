@@ -34,14 +34,11 @@ NSNumber *favoredNum;
     
     ixlEditProfile = [[ixlEditFileObject alloc]init];//keep this
     ixlNewProfile = [[ixlPlayerProfile alloc]init];  // Keep this
-    //ixlNewProfile2 = [[ixlPlayerProfile alloc]init]; // Keep this
-    //ixlNewProfile3 = [[ixlPlayerProfile alloc]init]; // Keep this
     
     /////////////testing stuff -- DELETE EXTRAS BEFORE FINALIZING//////////////
     //rest can be deleted or commented
     NSInteger two,three,four,five,six,seven,eight,nine,ten,eleven,twelve;
     two = 2,three = 3,four = 4,five = 5,six = 6,seven = 7,eight = 8,nine = 9,ten = 10,eleven = 11,twelve = 12;
-    ixlNewProfile.Name = @"Adam";
 }
 
 
@@ -111,17 +108,17 @@ NSNumber *favoredNum;
 - (IBAction)editDictionary:(id)sender {
     
     [ixlNewProfile setName:@"Adam Mitchell"];
-    [ixlNewProfile setFavoredNumber: favoredNum];
+    [ixlNewProfile setFavoredNumber];
     [ixlNewProfile setProfileNumber: @1];
     [ixlEditProfile changeFileObject:ixlNewProfile];
 
     [ixlNewProfile setName:@"Crack TheJack"];
-    [ixlNewProfile setFavoredNumber: favoredNum];
+    [ixlNewProfile setFavoredNumber];
     [ixlNewProfile setProfileNumber: @2];
     [ixlEditProfile changeFileObject:ixlNewProfile];
 
     [ixlNewProfile setName:@"War TheChild"];
-    [ixlNewProfile setFavoredNumber: favoredNum];
+    [ixlNewProfile setFavoredNumber];
     [ixlNewProfile setProfileNumber: @3];
     [ixlEditProfile changeFileObject:ixlNewProfile];
 }

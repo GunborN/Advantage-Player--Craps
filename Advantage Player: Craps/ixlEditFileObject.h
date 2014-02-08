@@ -11,14 +11,14 @@
 
 @interface ixlEditFileObject : ixlPlayerProfile
 {
-    ixlPlayerProfile *returnProfile;
+    //ixlPlayerProfile *returnProfile;
 	NSMutableDictionary *profiles;
     NSMutableArray *playerProfileArray;
 	int profileNumTracker;
 }
 @property (nonatomic,retain)NSMutableDictionary *profiles;
 @property (nonatomic,retain)NSMutableArray *playerProfileArray;
-@property ixlPlayerProfile *returnProfile;
+//@property ixlPlayerProfile *returnProfile;
 
 -(id)init;
 -(void) changeFileObject:(ixlPlayerProfile *)playerProfileObject;

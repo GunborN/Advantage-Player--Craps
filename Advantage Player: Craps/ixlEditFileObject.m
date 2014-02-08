@@ -9,13 +9,13 @@
 #import "ixlEditFileObject.h"
 
 @implementation ixlEditFileObject
-@synthesize profiles,playerProfileArray,returnProfile;
+@synthesize profiles,playerProfileArray;//,returnProfile;
 
 -(id) init
 {
     if(self = [super init])
     {
-        self.returnProfile = [[ixlPlayerProfile alloc]init];
+        //self.returnProfile = [[ixlPlayerProfile alloc]init];
         self.profiles = [[NSMutableDictionary alloc]init];
     }
     return self;
@@ -109,12 +109,12 @@
         {
             [tempArray insertObject:profiles atIndex:profileNumTracker];
             dict = [tempArray objectAtIndex:profileNumTracker];
-            [dict setObject:[NSNumber numberWithInteger:profileNumTracker++] forKey:@"Profile Number"];
+            [dict setObject:[NSNumber numberWithInt:profileNumTracker++] forKey:@"Profile Number"];
             [dict setObject:playerProfileObject->name forKey:@"Name"];
             [dict setObject:playerProfileObject->favoredNumber forKey:@"Favored Number"];
             [dict setObject:playerProfileObject->diceRolled forKey:@"Dice Rolled"];
             [dict setObject:playerProfileObject->rollAverageDictionary forKey:@"Roll Average"];
-            [playerProfileArray insertObject: dict atIndex:(profileNumTracker - 1)];
+            [playerProfileArray insertObject: dict atIndex:(profileNumTracker-1)];
             [playerProfileArray writeToFile:plistPath atomically:YES];
             
             ////////////This portion can be deleted after testing is done with//////////
