@@ -3,10 +3,10 @@
 <plist version="1.0">
 <array>
 	<dict>
-		<key>Profile</key>
-		<string>0</string>
 		<key>Profile Number</key>
 		<integer>0</integer>
+		<key>Name</key>
+		<string></string>
 		<key>Favored Number</key>
 		<integer>0</integer>
 		<key>Dice Rolled</key>

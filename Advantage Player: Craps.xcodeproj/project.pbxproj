@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B1489BF118A57829006F734C /* ixlEditFileObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B1489BF018A57829006F734C /* ixlEditFileObject.m */; };
 		B1B31A2E1891A1B500514E79 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B31A2D1891A1B500514E79 /* Foundation.framework */; };
 		B1B31A301891A1B500514E79 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B31A2F1891A1B500514E79 /* CoreGraphics.framework */; };
 		B1B31A321891A1B500514E79 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B31A311891A1B500514E79 /* UIKit.framework */; };
@@ -41,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B1489BEF18A57829006F734C /* ixlEditFileObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ixlEditFileObject.h; sourceTree = "<group>"; };
+		B1489BF018A57829006F734C /* ixlEditFileObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ixlEditFileObject.m; sourceTree = "<group>"; };
 		B1B31A2A1891A1B500514E79 /* Advantage Player: Craps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Advantage Player: Craps.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1B31A2D1891A1B500514E79 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B1B31A2F1891A1B500514E79 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -136,6 +139,8 @@
 				B1B31A3C1891A1B500514E79 /* AppDelegate.h */,
 				B1B31A3D1891A1B500514E79 /* AppDelegate.m */,
 				B1B31A3F1891A1B500514E79 /* Main.storyboard */,
+				B1489BEF18A57829006F734C /* ixlEditFileObject.h */,
+				B1489BF018A57829006F734C /* ixlEditFileObject.m */,
 				B1B31AA61899C3C500514E79 /* ixlPlayerProfile.h */,
 				B1B31AA71899C3C500514E79 /* ixlPlayerProfile.m */,
 				B1B31A451891A1B500514E79 /* Images.xcassets */,
@@ -285,6 +290,7 @@
 			files = (
 				B1B31AA81899C3C500514E79 /* ixlPlayerProfile.m in Sources */,
 				B1B31A731891A78C00514E79 /* E_ViewController.m in Sources */,
+				B1489BF118A57829006F734C /* ixlEditFileObject.m in Sources */,
 				B1B31A3E1891A1B500514E79 /* AppDelegate.m in Sources */,
 				B1B31A6A1891A60700514E79 /* B2_ViewController.m in Sources */,
 				B1B31A6D1891A6A100514E79 /* C_ViewController.m in Sources */,

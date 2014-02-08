@@ -7,10 +7,33 @@
 //
 
 #import "ixlPlayerProfile.h"
+#import "ixlEditFileObject.h"
 
 
 @implementation ixlPlayerProfile
-@synthesize Name,profileNumber,diceRolled,rollAverageDictionary;
+@synthesize Name,favoredNumber,profileNumber,diceRolled,rollAverageDictionary;
+/*
+-(id)initWithCurrent: (ixlEditFileObject *)currentObj
+{
+    return self;
+}
+
+-(id) initWithNew : (ixlEditFileObject *)newObj
+{
+    return [self initWithCurrent:nil];
+}
+*/
+-(id) init
+{
+    if(self = [super init])
+    {
+        self.diceRolled = [[NSMutableArray alloc]init];
+        //self.rollAverageDictionary = [NSMutableDictionary dictionary];
+        self.rollAverageDictionary = [[NSMutableDictionary alloc]init];
+        //return [self initWithNew:nil];
+    }
+    return self;
+}
 
 -(void) setFavoredNumber
 {
@@ -119,11 +142,5 @@
 	favoredNumber = leadRoll;
 }
 
--(NSNumber *) printFavoredNumber
-{
-	//print out the variable “favoredNumber” to wherever.
-    //at the moment (for testing purposes) all this does is return the favoredNumber when method is called.
-    return favoredNumber;
-}
 
 @end

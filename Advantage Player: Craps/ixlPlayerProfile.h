@@ -9,19 +9,22 @@
 #import <Foundation/Foundation.h>
 
 
+
 @interface ixlPlayerProfile : NSObject
 {
     NSString *Name;
-    NSNumber *profileNumber,*favoredNumber;
+    NSNumber *favoredNumber,*profileNumber;
     NSMutableArray *diceRolled;
     NSMutableDictionary *rollAverageDictionary;
 }
 @property NSString *Name;
-@property NSNumber *profileNumber;
+@property NSNumber *favoredNumber,*profileNumber;
 @property (nonatomic,retain) NSMutableArray *diceRolled;
 @property (nonatomic,retain) NSMutableDictionary *rollAverageDictionary;
 
+//-(id)initWithCurrent: (ixlEditFileObject *)currentObj;
+//-(id)initWithNew: (ixlEditFileObject *)newObj;
+-(id)init;
 -(void)setFavoredNumber;
--(NSNumber *)printFavoredNumber;\
 
 @end

@@ -13,7 +13,7 @@
 NSNumber *favoredNum;
 
 @implementation MainViewController
-@synthesize playerProfileArray;
+@synthesize ixlEditProfile,ixlNewProfile;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,25 +31,19 @@ NSNumber *favoredNum;
 	// Do any additional setup after loading the view.
     
     
-    /////////////testing stuff -- DELETE EXTRAS BEFORE FINALIZING//////////////
-    newProfile = [[ixlPlayerProfile alloc]init];// Keep this
-    newProfile.diceRolled = [[NSMutableArray alloc]init];// Keep this
-    newProfile.rollAverageDictionary = [NSMutableDictionary dictionary];// Keep this
     
+    ixlEditProfile = [[ixlEditFileObject alloc]init];//keep this
+    ixlNewProfile = [[ixlPlayerProfile alloc]init];// Keep this
+    
+    
+    /////////////testing stuff -- DELETE EXTRAS BEFORE FINALIZING//////////////
     //rest can be deleted or commented
     NSInteger two,three,four,five,six,seven,eight,nine,ten,eleven,twelve;
     two = 2,three = 3,four = 4,five = 5,six = 6,seven = 7,eight = 8,nine = 9,ten = 10,eleven = 11,twelve = 12;
-    newProfile.Name = @"Adam";
-    newProfile.profileNumber = [NSNumber numberWithInt: 1];
-    /*
-    NSLog(@"Starting favored num = %@",newProfile.printFavoredNumber);
-    NSLog(@"profile name = %@",newProfile.Name);
-    NSLog(@"profile number = %@",newProfile.profileNumber);
-    NSLog(@"Ending favored num = %@",newProfile.printFavoredNumber);
-    */
+    ixlNewProfile.Name = @"Adam";
     ////////////////////////////////////////////////////////////////////
     
-    
+    /*
     /////////////LOG and EDIT button functionality//////////////////////
     //Create array from Plist document of all player profiles
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -59,7 +53,7 @@ NSNumber *favoredNum;
     //This will store all of the player profiles into the "playerProfileArray" as
     //dictionaries
     playerProfileArray = [[[NSMutableArray alloc]initWithContentsOfFile:plistPath]mutableCopy];
-    NSLog(@"%@", playerProfileArray);
+    */
     ////////////////////////////////////////////////////////////////////
 }
 
@@ -75,13 +69,13 @@ NSNumber *favoredNum;
 - (IBAction)submitTextNumber:(id)sender {
     
     //converts favoredNumber in to string
-    NSString *favNumber = [newProfile.printFavoredNumber stringValue];
+    NSString *favNumber = [ixlNewProfile.favoredNumber stringValue];
     //converts input text to NSNumber
     NSInteger textNumberText = [_textNumber.text integerValue];
     
-    //adds an object from input text to the array newProfile
+    //adds an object from input text to the array ixlNewProfile
     if (textNumberText >= 2 && textNumberText <= 12){
-    [newProfile.diceRolled addObject:[NSNumber numberWithInteger:textNumberText]];
+        [ixlNewProfile.diceRolled addObject:[NSNumber numberWithInteger:textNumberText]];
     }
     else{
     _textNumber.text = @"";
@@ -89,31 +83,31 @@ NSNumber *favoredNum;
         return;
     }
     //converts NSMutable Array in to NSString seperated by ","
-    NSString *stringArray = [newProfile.diceRolled componentsJoinedByString:@","];
+    NSString *stringArray = [ixlNewProfile.diceRolled componentsJoinedByString:@","];
 
     //closes keyboard dialog
     [_textNumber resignFirstResponder];
     
-    [newProfile setFavoredNumber];
+    [ixlNewProfile setFavoredNumber];
     
-    favoredNum = newProfile.printFavoredNumber;
+    favoredNum = ixlNewProfile.favoredNumber;
     
     //sets labels
     _currentArray.text = stringArray;
     _labelFavNumber.text = favNumber;
     
     //for now, this just outputs to the console percentages of the rolls contained in the arrray.
-    NSLog(@"   Two:  %%%@", [newProfile.rollAverageDictionary objectForKey:@"2"]);
-    NSLog(@" Three:  %%%@", [newProfile.rollAverageDictionary objectForKey:@"3"]);
-    NSLog(@"  Four:  %%%@", [newProfile.rollAverageDictionary objectForKey:@"4"]);
-    NSLog(@"  Five:  %%%@", [newProfile.rollAverageDictionary objectForKey:@"5"]);
-    NSLog(@"   Six:  %%%@", [newProfile.rollAverageDictionary objectForKey:@"6"]);
-    NSLog(@" Seven:  %%%@", [newProfile.rollAverageDictionary objectForKey:@"7"]);
-    NSLog(@" Eight:  %%%@", [newProfile.rollAverageDictionary objectForKey:@"8"]);
-    NSLog(@"  Nine:  %%%@", [newProfile.rollAverageDictionary objectForKey:@"9"]);
-    NSLog(@"   Ten:  %%%@", [newProfile.rollAverageDictionary objectForKey:@"10"]);
-    NSLog(@"Eleven:  %%%@", [newProfile.rollAverageDictionary objectForKey:@"11"]);
-    NSLog(@"Twelve:  %%%@\n\n",[newProfile.rollAverageDictionary objectForKey:@"12"]);
+    NSLog(@"   Two:  %%%@", [ixlNewProfile.rollAverageDictionary objectForKey:@"2"]);
+    NSLog(@" Three:  %%%@", [ixlNewProfile.rollAverageDictionary objectForKey:@"3"]);
+    NSLog(@"  Four:  %%%@", [ixlNewProfile.rollAverageDictionary objectForKey:@"4"]);
+    NSLog(@"  Five:  %%%@", [ixlNewProfile.rollAverageDictionary objectForKey:@"5"]);
+    NSLog(@"   Six:  %%%@", [ixlNewProfile.rollAverageDictionary objectForKey:@"6"]);
+    NSLog(@" Seven:  %%%@", [ixlNewProfile.rollAverageDictionary objectForKey:@"7"]);
+    NSLog(@" Eight:  %%%@", [ixlNewProfile.rollAverageDictionary objectForKey:@"8"]);
+    NSLog(@"  Nine:  %%%@", [ixlNewProfile.rollAverageDictionary objectForKey:@"9"]);
+    NSLog(@"   Ten:  %%%@", [ixlNewProfile.rollAverageDictionary objectForKey:@"10"]);
+    NSLog(@"Eleven:  %%%@", [ixlNewProfile.rollAverageDictionary objectForKey:@"11"]);
+    NSLog(@"Twelve:  %%%@\n\n",[ixlNewProfile.rollAverageDictionary objectForKey:@"12"]);
 }
 
 //clears the text field when editing of text field begins
@@ -127,26 +121,33 @@ NSNumber *favoredNum;
     [self.view endEditing:YES];
 }
 
-
-//////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////More Persist Method////////////////////////////////////
-- (IBAction)logDictionary:(id)sender {
-    [self refreshArray]; //needed for below method
-}
-
--(void)refreshArray
-{
-    //creates an array from Plist document of all player profiles
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory =  [paths objectAtIndex:0];
-    NSString *plistPath = [documentsDirectory stringByAppendingPathComponent:@"playerProfile.plist"];
-    playerProfileArray = [[[NSMutableArray alloc] initWithContentsOfFile:plistPath]mutableCopy];
-    NSLog(@"%@", [playerProfileArray objectAtIndex:0]);
-}
-
 - (IBAction)editDictionary:(id)sender {
-    [self updatePlist]; //needed for below method
+    
+    ixlNewProfile.Name = @"Adam Mitchell";
+    ixlNewProfile.favoredNumber = favoredNum;
+    ixlNewProfile.profileNumber = @1;
+    [ixlEditProfile changeFileObject:ixlNewProfile];
+    ixlNewProfile.Name = @"Crack TheJack";
+    ixlNewProfile.favoredNumber = favoredNum;
+    ixlNewProfile.profileNumber = @2;
+    [ixlEditProfile changeFileObject:ixlNewProfile];
+    ixlNewProfile.Name = @"War TheChild";
+    ixlNewProfile.favoredNumber = favoredNum;
+    ixlNewProfile.profileNumber = @3;
+    [ixlEditProfile changeFileObject:ixlNewProfile];
+    //[self updatePlist]; //needed for below method
 }
+
+/*
+ -(void)refreshArray
+ {
+ //creates an array from Plist document of all player profiles
+ NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+ NSString *documentsDirectory =  [paths objectAtIndex:0];
+ NSString *plistPath = [documentsDirectory stringByAppendingPathComponent:@"playerProfile.plist"];
+ playerProfileArray = [[[NSMutableArray alloc] initWithContentsOfFile:plistPath]mutableCopy];
+ NSLog(@"%@", [playerProfileArray objectAtIndex:0]);
+ }
 
 //method to retrieve mountain object and update Plist
 -(void)updatePlist
@@ -167,11 +168,11 @@ NSNumber *favoredNum;
     
     [playerProfileArray replaceObjectAtIndex:0 withObject:dict];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSLog(@"Document's Directory1: %@",paths[0]);
     NSString *documentsDirectory =  [paths objectAtIndex:0];
     NSString *path = [documentsDirectory stringByAppendingPathComponent:@"playerProfile.plist"];
     [playerProfileArray writeToFile:path atomically:YES];
 }
-///////////////////////////////Persist Methods End////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
+*/
 
 @end
