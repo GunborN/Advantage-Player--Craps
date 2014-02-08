@@ -12,12 +12,12 @@
 
 @interface ixlPlayerProfile : NSObject
 {
-    NSString *Name;
+    NSString *name;
     NSNumber *favoredNumber,*profileNumber;
     NSMutableArray *diceRolled;
     NSMutableDictionary *rollAverageDictionary;
 }
-@property NSString *Name;
+@property NSString *name;
 @property NSNumber *favoredNumber,*profileNumber;
 @property (nonatomic,retain) NSMutableArray *diceRolled;
 @property (nonatomic,retain) NSMutableDictionary *rollAverageDictionary;

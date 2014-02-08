@@ -11,7 +11,7 @@
 
 
 @implementation ixlPlayerProfile
-@synthesize Name,favoredNumber,profileNumber,diceRolled,rollAverageDictionary;
+@synthesize name,favoredNumber,profileNumber,diceRolled,rollAverageDictionary;
 /*
 -(id)initWithCurrent: (ixlEditFileObject *)currentObj
 {
@@ -27,6 +27,7 @@
 {
     if(self = [super init])
     {
+        self.name = @"";
         self.diceRolled = [[NSMutableArray alloc]init];
         //self.rollAverageDictionary = [NSMutableDictionary dictionary];
         self.rollAverageDictionary = [[NSMutableDictionary alloc]init];

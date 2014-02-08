@@ -13,7 +13,7 @@
 NSNumber *favoredNum;
 
 @implementation MainViewController
-@synthesize ixlEditProfile,ixlNewProfile;
+@synthesize ixlEditProfile,ixlNewProfile,ixlNewProfile2,ixlNewProfile3;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,28 +33,15 @@ NSNumber *favoredNum;
     
     
     ixlEditProfile = [[ixlEditFileObject alloc]init];//keep this
-    ixlNewProfile = [[ixlPlayerProfile alloc]init];// Keep this
-    
+    ixlNewProfile = [[ixlPlayerProfile alloc]init];  // Keep this
+    //ixlNewProfile2 = [[ixlPlayerProfile alloc]init]; // Keep this
+    //ixlNewProfile3 = [[ixlPlayerProfile alloc]init]; // Keep this
     
     /////////////testing stuff -- DELETE EXTRAS BEFORE FINALIZING//////////////
     //rest can be deleted or commented
     NSInteger two,three,four,five,six,seven,eight,nine,ten,eleven,twelve;
     two = 2,three = 3,four = 4,five = 5,six = 6,seven = 7,eight = 8,nine = 9,ten = 10,eleven = 11,twelve = 12;
     ixlNewProfile.Name = @"Adam";
-    ////////////////////////////////////////////////////////////////////
-    
-    /*
-    /////////////LOG and EDIT button functionality//////////////////////
-    //Create array from Plist document of all player profiles
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *plistPath = [documentsDirectory stringByAppendingPathComponent:@"playerProfile.plist"];
-    
-    //This will store all of the player profiles into the "playerProfileArray" as
-    //dictionaries
-    playerProfileArray = [[[NSMutableArray alloc]initWithContentsOfFile:plistPath]mutableCopy];
-    */
-    ////////////////////////////////////////////////////////////////////
 }
 
 
@@ -123,56 +110,20 @@ NSNumber *favoredNum;
 
 - (IBAction)editDictionary:(id)sender {
     
-    ixlNewProfile.Name = @"Adam Mitchell";
-    ixlNewProfile.favoredNumber = favoredNum;
-    ixlNewProfile.profileNumber = @1;
+    [ixlNewProfile setName:@"Adam Mitchell"];
+    [ixlNewProfile setFavoredNumber: favoredNum];
+    [ixlNewProfile setProfileNumber: @1];
     [ixlEditProfile changeFileObject:ixlNewProfile];
-    ixlNewProfile.Name = @"Crack TheJack";
-    ixlNewProfile.favoredNumber = favoredNum;
-    ixlNewProfile.profileNumber = @2;
-    [ixlEditProfile changeFileObject:ixlNewProfile];
-    ixlNewProfile.Name = @"War TheChild";
-    ixlNewProfile.favoredNumber = favoredNum;
-    ixlNewProfile.profileNumber = @3;
-    [ixlEditProfile changeFileObject:ixlNewProfile];
-    //[self updatePlist]; //needed for below method
-}
 
-/*
- -(void)refreshArray
- {
- //creates an array from Plist document of all player profiles
- NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
- NSString *documentsDirectory =  [paths objectAtIndex:0];
- NSString *plistPath = [documentsDirectory stringByAppendingPathComponent:@"playerProfile.plist"];
- playerProfileArray = [[[NSMutableArray alloc] initWithContentsOfFile:plistPath]mutableCopy];
- NSLog(@"%@", [playerProfileArray objectAtIndex:0]);
- }
+    [ixlNewProfile setName:@"Crack TheJack"];
+    [ixlNewProfile setFavoredNumber: favoredNum];
+    [ixlNewProfile setProfileNumber: @2];
+    [ixlEditProfile changeFileObject:ixlNewProfile];
 
-//method to retrieve mountain object and update Plist
--(void)updatePlist
-{
-    NSMutableArray *tempArray = [[NSMutableArray alloc] init];
-    for (NSDictionary *object in playerProfileArray)
-    {
-        if ([[object objectForKey:@"Profile"] isEqualToString:@"0"])
-        {
-            [tempArray insertObject:object atIndex:0];
-        }
-    }
-    NSMutableDictionary *dict = [tempArray objectAtIndex:0];
-    
-    //edit below this line then use LOG and EDIT buttons///////
-    [dict setObject:favoredNum forKey:@"Favored Number"];
-    //don't edit past here for testing purposes////////////////
-    
-    [playerProfileArray replaceObjectAtIndex:0 withObject:dict];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSLog(@"Document's Directory1: %@",paths[0]);
-    NSString *documentsDirectory =  [paths objectAtIndex:0];
-    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"playerProfile.plist"];
-    [playerProfileArray writeToFile:path atomically:YES];
+    [ixlNewProfile setName:@"War TheChild"];
+    [ixlNewProfile setFavoredNumber: favoredNum];
+    [ixlNewProfile setProfileNumber: @3];
+    [ixlEditProfile changeFileObject:ixlNewProfile];
 }
-*/
 
 @end

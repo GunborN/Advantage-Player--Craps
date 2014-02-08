@@ -15,7 +15,8 @@
 {
     if(self = [super init])
     {
-        //self.profiles = [[NSMutableDictionary alloc]init];
+        self.returnProfile = [[ixlPlayerProfile alloc]init];
+        self.profiles = [[NSMutableDictionary alloc]init];
     }
     return self;
 }
@@ -29,25 +30,10 @@
     NSLog(@"TESTING1");
     playerProfileArray = [[[NSMutableArray alloc] initWithContentsOfFile:plistPath]mutableCopy];
     
-    NSMutableArray *tempArray = [[NSMutableArray alloc] initWithCapacity:[playerProfileArray count]];
-	NSMutableDictionary *dict;
-    NSDictionary *object;
+    NSMutableArray *tempArray = [[NSMutableArray alloc]initWithArray:playerProfileArray];
+	NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
     
-    // setting all of the objects from the passed array into a temporary array and obtaining the
-    // number of profiles in existance.
-    profileNumTracker = 0;
-    for (object in playerProfileArray)
-    {
-        NSLog(@"TESTING2");
-        if ([[object objectForKey:@"Profile Number"] isEqualToNumber:[NSNumber numberWithInt: profileNumTracker]])
-        {
-            NSLog(@"TESTING2.5");
-            [tempArray insertObject:object atIndex:profileNumTracker];
-            NSLog(@"%@",playerProfileArray[profileNumTracker]);
-            profileNumTracker++;
-            NSLog(@"TESTING3");
-        }
-    }
+    profileNumTracker = [playerProfileArray count];
     
     profiles = [tempArray objectAtIndex:0];
     
@@ -56,23 +42,24 @@
     // playerProfileArray, then writes it to the file
 	if(profileNumTracker == 1)
 	{
-        NSLog(@"TESTING4");
+
 		[tempArray insertObject:profiles atIndex:1];
         dict = [tempArray objectAtIndex:1];
         [dict setObject:[NSNumber numberWithInt:profileNumTracker++] forKey:@"Profile Number"];
         
-        if(playerProfileObject.Name == nil || [playerProfileObject.Name  isEqual: @""])
+        if(playerProfileObject->name == nil || [playerProfileObject->name isEqualToString:@""])
         {
-            playerProfileObject.Name = @"Choose-A-Name";
-            [dict setObject:playerProfileObject.Name forKey:@"Name"];
+            [playerProfileObject setName: @"Choose-A-Name"];
+            [dict setObject:playerProfileObject->name forKey:@"Name"];
         }
-        if(playerProfileObject.favoredNumber != nil)
+        if(playerProfileObject->favoredNumber != nil)
         {
-            [dict setObject:playerProfileObject.favoredNumber forKey:@"Favored Number"];
+            [dict setObject:playerProfileObject->favoredNumber forKey:@"Favored Number"];
         }
-        [dict setObject:playerProfileObject.diceRolled forKey:@"Dice Rolled"];
-        [dict setObject:playerProfileObject.rollAverageDictionary forKey:@"Roll Average"];
+        [dict setObject:playerProfileObject->diceRolled forKey:@"Dice Rolled"];
+        [dict setObject:playerProfileObject->rollAverageDictionary forKey:@"Roll Average"];
         NSLog(@"profileNumTracker: %i",profileNumTracker);
+        //[playerProfileArray replaceObjectAtIndex:0 withObject:profiles];
         [playerProfileArray insertObject:dict atIndex:(profileNumTracker-1)]; //ObjectAtIndex:(profileNumTracker - 1) withObject:dict];
         [playerProfileArray writeToFile:plistPath atomically:YES];
         
@@ -82,25 +69,25 @@
         NSLog(@"This is the updated file information after editing the file: "); ///
         NSLog(@"%@",playerProfileArray[(profileNumTracker-1)]);                  ///
         ////////////////////////////////////////////////////////////////////////////
-		NSLog(@"TESTING5");
+
 	}else{
         
         bool ifProfileExisted = false;
-        NSLog(@"TESTING6");
+
         // this will go through each object in the playerProfileArray one at a time.
         for(NSDictionary *currentObject in tempArray)
         {
-            NSLog(@"TESTING7");
+
             // if the object in array already exists, simply replace values in the tempArray with updated values and
             // do the same write to file process.
             if([[currentObject objectForKey:@"Profile Number"] isEqualToNumber:playerProfileObject->profileNumber])
             {
-                NSLog(@"TESTING8");
+
                 dict = [tempArray objectAtIndex:(int)playerProfileObject->profileNumber] ;
-                [dict setObject:playerProfileObject.Name forKey:@"Name"];
-                [dict setObject:playerProfileObject.favoredNumber forKey:@"Favored Number"];
-                [dict setObject:playerProfileObject.diceRolled forKey:@"Dice Rolled"];
-                [dict setObject:playerProfileObject.rollAverageDictionary forKey:@"Roll Average"];
+                [dict setObject:playerProfileObject->name forKey:@"Name"];
+                [dict setObject:playerProfileObject->favoredNumber forKey:@"Favored Number"];
+                [dict setObject:playerProfileObject->diceRolled forKey:@"Dice Rolled"];
+                [dict setObject:playerProfileObject->rollAverageDictionary forKey:@"Roll Average"];
                 [playerProfileArray replaceObjectAtIndex:((int)playerProfileObject->profileNumber) withObject:dict];
                 [playerProfileArray writeToFile:plistPath atomically:YES];
                 
@@ -110,7 +97,7 @@
                 NSLog(@"This is the updated file information after editing the file: "); ////
                 NSLog(@"%@",playerProfileArray[((int)playerProfileObject->profileNumber)]);//
                 /////////////////////////////////////////////////////////////////////////////
-                NSLog(@"TESTING9");
+
                 ifProfileExisted = true;
                 break;
             }
@@ -120,17 +107,16 @@
         // process basically.
         if(ifProfileExisted == false)
         {
-            NSLog(@"TESTING10");
             [tempArray insertObject:profiles atIndex:profileNumTracker];
             dict = [tempArray objectAtIndex:profileNumTracker];
             [dict setObject:[NSNumber numberWithInteger:profileNumTracker++] forKey:@"Profile Number"];
-            [dict setObject:playerProfileObject.Name forKey:@"Name"];
-            [dict setObject:playerProfileObject.favoredNumber forKey:@"Favored Number"];
-            [dict setObject:playerProfileObject.diceRolled forKey:@"Dice Rolled"];
-            [dict setObject:playerProfileObject.rollAverageDictionary forKey:@"Roll Average"];
-            [playerProfileArray replaceObjectAtIndex:(profileNumTracker - 1) withObject:dict];
+            [dict setObject:playerProfileObject->name forKey:@"Name"];
+            [dict setObject:playerProfileObject->favoredNumber forKey:@"Favored Number"];
+            [dict setObject:playerProfileObject->diceRolled forKey:@"Dice Rolled"];
+            [dict setObject:playerProfileObject->rollAverageDictionary forKey:@"Roll Average"];
+            [playerProfileArray insertObject: dict atIndex:(profileNumTracker - 1)];
             [playerProfileArray writeToFile:plistPath atomically:YES];
-            NSLog(@"TESTING11");
+            
             ////////////This portion can be deleted after testing is done with//////////
             NSLog(@"Document's Directory1: %@",paths[0]);                            ///
             NSLog(@"There are: %i profiles currently made.", (profileNumTracker-1)); ///
