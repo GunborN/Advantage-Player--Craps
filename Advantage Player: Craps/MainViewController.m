@@ -13,7 +13,7 @@
 NSNumber *favoredNum;
 
 @implementation MainViewController
-@synthesize ixlEditProfile,ixlNewProfile,ixlNewProfile2,ixlNewProfile3;
+@synthesize ixlEditProfile,ixlNewProfile;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,7 +33,7 @@ NSNumber *favoredNum;
     
     
     ixlEditProfile = [[ixlEditFileObject alloc]init];//keep this
-    ixlNewProfile = [[ixlPlayerProfile alloc]init];  // Keep this
+    ixlNewProfile = [[ixlPlayerProfile alloc]init];  //keep this
     
     /////////////testing stuff -- DELETE EXTRAS BEFORE FINALIZING//////////////
     //rest can be deleted or commented
@@ -121,6 +121,7 @@ NSNumber *favoredNum;
     [ixlNewProfile setFavoredNumber];
     [ixlNewProfile setProfileNumber: @3];
     [ixlEditProfile changeFileObject:ixlNewProfile];
+     
 }
 
 @end

@@ -13,7 +13,7 @@
 
 @interface MainViewController : UIViewController{
     ixlEditFileObject *ixlEditProfile;
-    ixlPlayerProfile *ixlNewProfile,*ixlNewProfile2,*ixlNewProfile3;
+    ixlPlayerProfile *ixlNewProfile;
 }
 
 ////////These are for LOG and EDIT buttons///////
@@ -26,8 +26,7 @@
 @property (nonatomic, retain) IBOutlet UITextField *textNumber;
 @property (nonatomic, retain) IBOutlet UIButton *buttonSubmit;
 @property (nonatomic, retain) IBOutlet UILabel *currentArray;
-//@property (nonatomic, retain) IBOutlet NSMutableArray *playerProfileArray;
-@property (nonatomic, retain) IBOutlet ixlEditFileObject *ixlEditProfile;
-@property (nonatomic, retain) IBOutlet ixlPlayerProfile *ixlNewProfile,*ixlNewProfile2,*ixlNewProfile3;
+@property IBOutlet ixlEditFileObject *ixlEditProfile;
+@property IBOutlet ixlPlayerProfile *ixlNewProfile;
 
 @end
