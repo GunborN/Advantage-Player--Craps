@@ -116,31 +116,39 @@
                 break;
         }
 	}
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
+    formatter.numberStyle = NSNumberFormatterRoundDown;
 
     // This big block sets objects in a dictionary I can gain access to by using reference keys
-    [rollAverageDictionary setObject:@((totalTwos/totalNum)*100) forKey :@"2"];
-    [rollAverageDictionary setObject:@((totalThrees/totalNum)*100) forKey :@"3"];
-    [rollAverageDictionary setObject:@((totalFours/totalNum)*100) forKey :@"4"];
-    //[rollAverageDictionary setObject:@0.0f forKey :@"HW 4"];
-    //[rollAverageDictionary setObject:@0.0f forKey :@"EW 4"];
-    [rollAverageDictionary setObject:@((totalFives/totalNum)*100) forKey :@"5"];
-    [rollAverageDictionary setObject:@((totalSixes/totalNum)*100) forKey :@"6"];
-    //[rollAverageDictionary setObject:@0.0f forKey :@"HW 6"];
-    //[rollAverageDictionary setObject:@0.0f forKey :@"EW 6"];
-    [rollAverageDictionary setObject:@((totalSevens/totalNum)*100)forKey :@"7"];
-    [rollAverageDictionary setObject:@((totalEights/totalNum)*100) forKey :@"8"];
-    //[rollAverageDictionary setObject:@0.0f forKey :@"HW 8"];
-    //[rollAverageDictionary setObject:@0.0f forKey :@"EW 8"];
-    [rollAverageDictionary setObject:@((totalNines/totalNum)*100) forKey :@"9"];
-    [rollAverageDictionary setObject:@((totalTens/totalNum)*100) forKey :@"10"];
-    //[rollAverageDictionary setObject:@0.0f forKey :@"HW 10"];
-    //[rollAverageDictionary setObject:@0.0f forKey :@"EW 10"];
-    [rollAverageDictionary setObject:@((totalElevens/totalNum)*100) forKey :@"11"];
-    [rollAverageDictionary setObject:@((totalTwelves/totalNum)*100) forKey :@"12"];
+    [self format:@((totalTwos/totalNum)*100):@"2":formatter];
+    [self format:@((totalThrees/totalNum)*100):@"3":formatter];
+    [self format:@((totalFours/totalNum)*100):@"4":formatter];
+    //[self format:@((totalThrees/totalNum)*100):@"HW 4":formatter];
+    //[self format:@((totalThrees/totalNum)*100):@"EW 4":formatter];
+    [self format:@((totalFives/totalNum)*100):@"5":formatter];
+    [self format:@((totalSixes/totalNum)*100):@"6":formatter];
+    //[self format:@((totalThrees/totalNum)*100):@"HW 6":formatter];
+    //[self format:@((totalThrees/totalNum)*100):@"EW 6":formatter];
+    [self format:@((totalSevens/totalNum)*100):@"7":formatter];
+    [self format:@((totalEights/totalNum)*100):@"8":formatter];
+    //[self format:@((totalThrees/totalNum)*100):@"HW 8":formatter];
+    //[self format:@((totalThrees/totalNum)*100):@"EW 8":formatter];
+    [self format:@((totalNines/totalNum)*100):@"9":formatter];
+    [self format:@((totalTens/totalNum)*100):@"10":formatter];
+    //[self format:@((totalTens/totalNum)*100):@"HW 10":formatter];
+    //[self format:@((totalThrees/totalNum)*100):@"EW 10":formatter];
+    [self format:@((totalElevens/totalNum)*100):@"11":formatter];
+    [self format:@((totalTwelves/totalNum)*100):@"12":formatter];
     
     //this will set the favoredNumber to the most commonly picked number
 	favoredNumber = leadRoll;
 }
 
+-(void)format: (NSNumber *)inFormat : (NSString *)key :(NSNumberFormatter *)formatter
+{
+    NSString *string = [formatter stringFromNumber:inFormat];
+    NSNumber *num = [formatter numberFromString:string];
+    [rollAverageDictionary setObject:num forKey :key];
+}
 
 @end

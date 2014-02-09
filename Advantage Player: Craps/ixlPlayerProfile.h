@@ -26,5 +26,6 @@
 //-(id)initWithNew: (ixlEditFileObject *)newObj;
 -(id)init;
 -(void)setFavoredNumber;
+-(void)format: (NSNumber *)inFormat : (NSString *)key :(NSNumberFormatter *)formatter;
 
 @end
